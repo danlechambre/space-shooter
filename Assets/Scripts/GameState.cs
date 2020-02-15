@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameState : MonoBehaviour
 {
@@ -23,54 +24,25 @@ public class GameState : MonoBehaviour
     
     private void Start()
     {
-        ui = GameObject.Find("Canvas").GetComponent<UIManager>();
-    }
-
-    private void LocateAndUpdateCurrentUI()
-    {
-        ui = GameObject.Find("Canvas").GetComponent<UIManager>();
-        UpdatePlayerHealth(playerHealth);
-        UpdatePlayerScore(playerScore);
-    }
-
-    public int GetScore()
-    {
-        return playerScore;
-    }
-
-    public int GetPlayerHealth()
-    {
-        return playerHealth;
+        ui = GameObject.Find("GameStatsUI").GetComponent<UIManager>();
     }
 
     public void UpdatePlayerHealth(int health)
     {
-        if (!ui)
-        {
-            LocateAndUpdateCurrentUI();
-        }
-        else
-        {
-            playerHealth = health;
-            ui.UpdateHealthUI(playerHealth);
-        }
+        playerHealth = health;
+        ui.UpdateHealthUI(playerHealth);
     }
 
     public void UpdatePlayerScore(int score)
     {
-        if (!ui)
-        {
-            LocateAndUpdateCurrentUI();
-        }
-        else
-        {
-            playerScore = score;
-            ui.UpdateScoreUI(playerScore);
-        }
+
+        playerScore = score;
+        ui.UpdateScoreUI(playerScore);
     }
 
     public void ResetGameState()
     {
         Destroy(this.gameObject);
+        Destroy(GameObject.Find("GameStatsUI"));
     }
 }

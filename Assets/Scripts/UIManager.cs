@@ -8,6 +8,18 @@ public class UIManager : MonoBehaviour
 {
     private TextMeshProUGUI scoreText, healthText;
 
+    private void Awake()
+    {
+        if (FindObjectsOfType(GetType()).Length > 1)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
     private void Start()
     {
         scoreText = GameObject.Find("Score Text").GetComponent<TextMeshProUGUI>();

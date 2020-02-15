@@ -9,14 +9,12 @@ public class BackgroundScroller : MonoBehaviour
     Material material;
     Vector2 offset;
 
-    // Start is called before the first frame update
     void Start()
     {
         material = GetComponent<MeshRenderer>().material;
         offset = new Vector2(material.mainTextureOffset.x, material.mainTextureOffset.y);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (material.mainTextureOffset.y < 1.0f)

@@ -5,19 +5,20 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private int health = 100;
-    [SerializeField] private float timeToNextFire;
-    [SerializeField] private float minTimeBetweenShots = 0.1f;
-    [SerializeField] private float maxTimeBetweenShots = 0.5f;
+    private GameState gameState;
+    private UIManager ui;
+    
     [SerializeField] private GameObject laserPrefab;
-    [SerializeField] private float projectileSpeed = 8f;
     [SerializeField] private GameObject explosionVFXprefab;
     [SerializeField] private AudioClip deathClip;
     [SerializeField] private AudioClip fireClip;
 
-    private GameState gameState;
-    private UIManager ui;
-
+    [SerializeField] private int health = 100;
+    [SerializeField] private float timeToNextFire;
+    [SerializeField] private float minTimeBetweenShots = 0.1f;
+    [SerializeField] private float maxTimeBetweenShots = 0.5f;
+    [SerializeField] private float projectileSpeed = 8f;
+    
     private Vector3 listenerPos;
 
     private void Start()
@@ -27,11 +28,6 @@ public class Enemy : MonoBehaviour
         listenerPos = Camera.main.transform.position;
 
         StartCoroutine(NextFire());
-    }
-
-    private void Update()
-    {
-        
     }
 
     private void Fire()
@@ -66,7 +62,7 @@ public class Enemy : MonoBehaviour
     {
         int damage = damageDealer.GetDamage();
         health -= damage;
-        // gameState.UpdatePlayerScore(damage);
+
         FindObjectOfType<Player>().AddToScore(damage);
 
         if (health <= 0)

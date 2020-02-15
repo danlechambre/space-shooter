@@ -7,7 +7,6 @@ public class SceneLoader : MonoBehaviour
 {
     public void LoadGameScene()
     {
-        
         SceneManager.LoadScene(2);
     }
 
@@ -15,11 +14,6 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene(0);
         FindObjectOfType<GameState>().ResetGameState();
-    }
-
-    public void QuitGame()
-    {
-       
     }
 
     public void LoadGameOver(float timeToWait)

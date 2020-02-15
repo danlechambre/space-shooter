@@ -5,41 +5,30 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [Header("Player Stats")]
-    [SerializeField]
-    private int health = 500;
-    private int score = 0;
-
-    [Header("Player Movement")]
-    [SerializeField]
-    private float speed = 5.0f;
-    [SerializeField]
-    private float paddingX = 0.02f;
-    [SerializeField]
-    private float paddingY = 0.03f;
-    [SerializeField]
-    private float paddingTop = 0.1f;
-
-    [Header("Player Weapon")]
-    [SerializeField]
-    private GameObject laserPrefab;
-    [SerializeField]
-    private float projectileSpeed = 20.0f;
-    [SerializeField]
-    private float fireCooldownPeriod = 0.15f;
-
-    [SerializeField]
-    private AudioClip deathClip;
-
     private AudioSource audioSource;
     private SceneLoader sceneLoader;
     private GameState gameState;
+
+    [Header("Player Movement")]
+    [SerializeField] private float speed = 5.0f;
+    [SerializeField] private float paddingX = 0.02f;
+    [SerializeField] private float paddingY = 0.03f;
+    [SerializeField] private float paddingTop = 0.1f;
+
+    [Header("Player Weapon")]
+    [SerializeField] private GameObject laserPrefab;
+    [SerializeField] private float projectileSpeed = 20.0f;
+    [SerializeField] private float fireCooldownPeriod = 0.15f;
+    [SerializeField] private AudioClip deathClip;
+
     private Vector3 boundsLowerLeft;
     private Vector3 boundsUpperRight;
-
-    // state
-    private bool canFire = true;
     private Vector3 listenerPos;
+
+    private int health = 500;
+    private int score = 0;
+    private bool canFire = true;
+    
 
     void Start()
     {
