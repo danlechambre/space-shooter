@@ -63,7 +63,11 @@ public class Enemy : MonoBehaviour
         int damage = damageDealer.GetDamage();
         health -= damage;
 
-        FindObjectOfType<Player>().AddToScore(damage);
+        if (FindObjectOfType<Player>())
+        {
+            FindObjectOfType<Player>().AddToScore(damage);
+        }
+        
 
         if (health <= 0)
         {
